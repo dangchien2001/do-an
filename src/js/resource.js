@@ -372,15 +372,21 @@ var resource = {
         },
         {
             name: "voucher_code",
-            style: "text-align: left; color: #1aa4c8"
+            style: "text-align: left; color: #1aa4c8",
+            type: "combo",
+            entity: "department_code",
+            entityEmit: "department_id",
+            key: "Department"
         },
         {
             name: "voucher_date",
-            style: "text-align: center;"
+            style: "text-align: center;",
+            type: "date"
         },
         {
             name: "increment_date",
-            style: "text-align: center;"
+            style: "text-align: center;",
+            type: "date"
         },
         {
             name: "price",

@@ -129,7 +129,7 @@ export default {
     props: {
         label: String,
         alowNull: Boolean,
-        modelValue: String,
+        modelValue: {String, default: new Date()},
         bottom: Boolean,
         tabindex: Number,
     },

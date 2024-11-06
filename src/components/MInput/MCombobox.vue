@@ -7,7 +7,7 @@
     >
 
         <!-- label -->
-        <div class="label-combobox">
+        <div class="label-combobox" v-if="label?.length > 0">
             {{ label }}
             <span 
                 style="color: red;font-size: 13px;"

@@ -1,206 +1,161 @@
 <template>
   <div>
-    <TheRow 
-        :account="account"
-        @emitAccountId="handleAccountId"
-        @emitAccountIdForAdd="handleAccountIdForAdd"
-    ></TheRow>
-    <TheForm 
-        :accountParentId="accountParentId"
-        :accountParentCode="accountParentCode"
-        @handleAfterAddSuccess="handleAccountId"
-        @cleanAccountParentCode="cleanAccountParentCode"
-    ></TheForm>
-    <test-slot>
-        <template #slot-first="{ click, value }">
-            <div @click="click">
-                {{ value }}
-            </div>
-        </template>
-        <template #slot-second="{ click, array }">
-            <div v-for="(item, index) in array" :key="index">
-                {{ item }}
-            </div>
-            <button @click="click">changeArray</button>
-        </template>
-    </test-slot>
-    <vue-x></vue-x>
+    <TableCombo
+      :tableTh="voucherTh"
+      :footer="'newFooter'"
+      :arrayTotal="dataTotalVoucher"
+      @cancelLoading="
+        () => {
+          this.$emit('cancelLoading');
+        }
+      "
+      @startLoading="
+        () => {
+          this.$emit('startLoading');
+        }
+      "
+      model="voucher"
+      colspan="5"
+      typeTable="table-container-non-border"
+      :dataFooter="assetFooter"
+      :boldRow="true"
+      :allowEditAndDeleteCol="true"
+      :allowGetAll="false"
+      @objectAfterClickRow="
+        (object) => {
+          handleVoucherIdAfterClickRow(object);
+        }
+      "
+      :dataAvailable="dataVoucher"
+      :totalRecord="totalRecordVoucher"
+      :totalPageProp="totalPageVoucher"
+      :currentPageProp="currentPageVoucher"
+      @updateCurrentPage="updateCurrentPage"
+      numOfActivePage="1"
+      @updateNumberOfRecord="
+        (e) => {
+          pageSizeVoucher = e;
+        }
+      "
+      :allowPaging="true"
+      :allowCheckBox="true"
+      @edit="handleEdit"
+      entity="voucher_code"
+      @listAssetForDelete="(data) => (voucherCodeForDelete = data)"
+      @delete="
+        (data) => {
+          voucherCodeForDeleteOnce = data;
+          isShowPopUpDeleteOnce = true;
+        }
+      "
+      :tableChange2="tableChange2"
+      :activeRow="activeRow"
+    ></TableCombo>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import TheRow from './TheRow.vue';
-import TheForm from './TheForm.vue';
-import testSlot from './testSlot.vue'
-import VueX from './VueX.vue';
+import axios from "axios";
+import TableCombo from "../../components/MTableCombo/MTableCombo.vue";
+import resource from "@/js/resource";
+import config from "@/js/config";
 
 export default {
-    components: {
-        TheRow, TheForm, testSlot, VueX
+  components: {
+    TableCombo,
+  },
+  async created() {
+    // gọi api phân trang bảng voucher đổ chứng từ vào table
+    // Created by: NDCHIEN(19/4/2023)
+    await this.voucherFilter(
+      this.keyWord,
+      this.pageSizeVoucher,
+      this.currentPageVoucher
+    );
+  },
+  mounted() {},
+  methods: {
+    /**
+     * Hàm gọi api phân trang bảng voucher
+     * Created by: NDCHIEN(19/4/2023)
+     */
+    async voucherFilter(keyWord, pageSize, pageNumber) {
+      this.$emit("startLoading");
+      await axios
+        .get(this.voucherAPI.filterVoucher(keyWord, pageSize, pageNumber))
+        .then((res) => {
+          this.dataVoucher = res.data.Data;
+          this.dataTotalVoucher = res.data.MoreInfo;
+          this.totalRecordVoucher = res.data.TotalRecord;
+          this.totalPageVoucher = res.data.TotalPage;
+          this.currentPageVoucher = res.data.CurrentPage;
+
+          if (this.dataVoucher.length > 0) {
+            this.dataVoucherFirst = this.dataVoucher[0].voucher_id;
+          }
+
+          this.$emit("cancelLoading");
+          if (this.dataVoucher.length == 0) {
+            this.dataVoucherFirst = "";
+          }
+        })
+        .catch((res) => {
+          console.log(res);
+        });
     },
-    created() {
-        this.getAll();
+
+    handleEdit(voucher_code) {
+      this.typeOfForm = this.assetView.typeOfForm.editForm;
+      this.voucherCode = voucher_code;
+      this.isShowForm = true;
     },
-    mounted() {
-        this.$emit('cancelLoading');
+
+    /**
+     * Hàm xử lí sau khi chuyển trang
+     * Created by: NDCHIEN(7/5/2023)
+     */
+    updateCurrentPage(currentPage) {
+      this.currentPageVoucher = currentPage;
     },
-    methods: {
-        /**
-         * Làm rỗng biến accountParentCode(được truyền vào form thông qua props) sau khi add thành công
-         * Created by: NDCHIEN(24/5/2023)
-         */
-        cleanAccountParentCode(){
-            this.accountParentCode = "";
-        },
-        /**
-         * Gọi API lấy tất cả tài khoản cha
-         * Created by: NDCHIEN(22/5/2023)
-         */
-        getAll() {
-            axios
-            .get("https://localhost:7210/api/AccountSystems")
-            .then(res => {
-                this.account = this.mappingData(res.data);
-                this.$emit('cancelLoading');
-            })
-        },
-        /**
-         * Hàm format lại dữ liệu được truyền từ API lên
-         * Created by: NDCHIEN(22/5/2023)
-         */
-        mappingData(data) {
-            return data.map(item => {
-                return {
-                    accountId: item.AccountId,
-                    accountCode: item.AccountCode,
-                    accountName: item.AccountName,
-                    property: item.Property,
-                    accountNameEN: item.AccountNameEN,
-                    explain: item.Explain,
-                    state: item.State,
-                    haveChild: item.HaveChild,
-                    listChildAccount: []
-                }
-            })            
-        },
-        /**
-         * Hàm xử lý sau khi bấm button more trong component hoặc sau khi thêm thành công để lấy ra các phần tử con bằng id cha
-         * Created by: NDCHIEN(22/5/2023)
-         * @param {id tài sản cha} accountId
-         */
-        handleAccountId(accountId) {
-            axios
-            .get(`https://localhost:7210/api/AccountSystems/Detail/${accountId}`)
-            .then(res => {
-                this.addData(this.account, accountId, res.data)
-            })
-            this.$store.dispatch("fetchTraction", { id: accountId })
-        },
 
-        /**
-         * Hàm xử lý sau khi nhấn nút thêm để gán data cho các biến dùng để truyền vào prop trong form
-         * Created by: NDCHIEN(22/5/2023)
-         */
-        handleAccountIdForAdd(accountId, accountCode) {
-            this.accountParentId = accountId;
-            this.accountParentCode = accountCode;
-        },
-
-        /**
-         * Hàm thêm data vào vị trí tương ứng với accountId được truyền vào
-         * Created by: NDCHIEN(22/5/2023)
-         */
-        addData(data, accountId, dataForPush) {
-            data.forEach(element => {
-                if(element.accountId == accountId) {
-                    element.listChildAccount = [];
-                    element.listChildAccount = [...this.mappingData(dataForPush)];
-                }
-                else {
-                    this.addData(element.listChildAccount, accountId, dataForPush);
-                }
-            });
-        }
+    /**
+     * Hàm lấy id của bảng voucher sau khi click phục vụ gọi api hiển thị bảng voucher detail
+     * Created by: NDCHIEN(18/4/2023)
+     */
+    handleVoucherIdAfterClickRow(object) {
+      this.idVoucher = object.voucher_id;
+      if (object.row_index <= this.pageSizeVoucher) {
+        this.activeRow = object.row_index - 1;
+      }
+      if (object.row_index > this.pageSizeVoucher) {
+        this.activeRow =
+          object.row_index -
+          this.pageSizeVoucher * (this.currentPageVoucher - 1) -
+          1;
+      }
     },
-    data() {
-        return {
-            account: 
-            [
-                {
-                    accountId: '1',
-                    accountCode: "001",
-                    accountName: "master",
-                    property: "",
-                    accountNameEN: "",
-                    explain: "",
-                    state: "",
-                    listChildAccount: [
-                        {
-                            accountId: '11',
-                            accountCode: "0011",
-                            accountName: "detail1",
-                            property: "",
-                            accountNameEN: "",
-                            explain: "",
-                            state: "",
-                            listChildAccount: [
-                                {
-                                    accountId: '111',
-                                    accountCode: "00111",
-                                    accountName: "detail2",
-                                    property: "",
-                                    accountNameEN: "",
-                                    explain: "",
-                                    state: "",
-                                    listChildAccount: [
-                                        {
-                                            accountId: '1111',
-                                            accountCode: "001111",
-                                            accountName: "detail3",
-                                            property: "",
-                                            accountNameEN: "",
-                                            explain: "",
-                                            state: "",
-                                            listChildAccount: [
-
-                                            ]
-                                        },
-                                    ]
-                                },
-                            ]
-                        },
-                        {
-                            accountId: '2',
-                            accountCode: "0012",
-                            accountName: "detail12",
-                            property: "",
-                            accountNameEN: "",
-                            explain: "",
-                            state: "",
-                            listChildAccount: [
-
-                            ]
-                        }
-                    ]
-                },
-                {
-                    accountCode: "002",
-                    accountName: "master",
-                    property: "",
-                    accountNameEN: "",
-                    explain: "",
-                    state: "",
-                    listChildAccount: [
-
-                    ]
-                }
-            ],
-            accountParentId: "",
-            accountParentCode: "",
-        }
-    }
-}
+  },
+  data() {
+    return {
+      voucherTh: resource.voucherTh,
+      currentPageVoucher: 1,
+      pageSizeVoucher: 20,
+      keyWord: "",
+      voucherAPI: config.voucherAPI,
+      assetFooter: resource.assetFooter,
+      assetView: resource.assetView,
+      activeRow: 0,
+      totalPageVoucher: 0,
+      totalRecordVoucher: 0,
+      dataTotalVoucher: [],
+      dataVoucher: [],
+      dataVoucherFirst: {},
+      isShowForm: false,
+      voucherCode: "",
+      typeOfForm: 0,
+    };
+  },
+};
 </script>
 
 <style scoped>
