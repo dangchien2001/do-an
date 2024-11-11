@@ -70,15 +70,23 @@
                     v-for="(propertie, index) in properties"
                     :key="index"
                     :style="propertie.style"
-                >
-                    <span v-if="propertie.type == undefined">{{ this.formatMoney(item[propertie.name]) }}</span>
+                >                    
+                    <MInput
+                        v-if="propertie.type == undefined"
+                        v-model="item[propertie.name]"
+                        :maxlength="20"
+                    ></MInput>
+                    <MNumberInput
+                        v-if="propertie.type == 'number'"
+                        v-model="item[propertie.name]"
+                    ></MNumberInput>
                     <MCombobox
                         :entity="propertie.entity"
                         :entityEmit="propertie.entityEmit"
                         :positionAbsolute="true"
                         v-if="propertie.type == 'combo'"
                         v-model="item[propertie.name]"
-                        :dataAvailable="dataComboboxs.filter(dataCombobox => dataCombobox.key == propertie.key)[0].data"
+                        :dataAvailable="dataComboboxs.filter(dataCombobox => dataCombobox.key == propertie.key)[0]?.data"
                     ></MCombobox>
                     <MDatetime
                         v-if="propertie.type == 'date'"
@@ -555,11 +563,13 @@
     import MProductDetail from "@/pages/productDetail/MProductDetail.vue";
     import MCombobox from "../MInput/MCombobox.vue";
     import MDatetime from "../MDatetime/MDatetime.vue";
+    import MInput from '@/components/MInput/MInput.vue';
+    import MNumberInput from '@/components/MInput/MNumberInput.vue';
     // import $ from 'jquery';
     
     export default {
         components: {
-            MCheckbox, MTooltip, MProductDetail, MCombobox, MDatetime
+            MCheckbox, MTooltip, MProductDetail, MCombobox, MDatetime, MInput, MNumberInput
         },
         props: {
             api: String,
@@ -634,7 +644,7 @@
     
             this.activePage = this.numOfActivePage;
 
-            await this.getDataForCombobox('Departments');
+            await this.getDataForCombobox(['Departments', 'Assets']);
         },
     
     
@@ -645,6 +655,13 @@
                         .get("https://localhost:7210/api/Departments")
                         .then(res => {
                             (this.dataComboboxs.push({key: 'Department', data: res.data}))
+                        })
+                }
+                if(keyData.includes('Assets')){
+                    axios
+                        .get("https://localhost:7210/api/Assets")
+                        .then(res => {
+                            (this.dataComboboxs.push({key: 'Asset', data: res.data}))
                         })
                 }
             },

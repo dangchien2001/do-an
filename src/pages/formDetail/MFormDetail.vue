@@ -75,28 +75,9 @@
                 </div>
                 <div class="title-form-body-voucher-detail-2">{{voucherForm.subTitle.voucherInformationDetail}}</div>
                 <div class="voucher-info-with-table-and-filter">
-                    <div class="filter-input-voucher-detail-container">
-                        <div class="filter-input-voucher-detail">
-                            <MInputWithIcon
-                                :placeholder="voucherForm.placeholderText.searchPlaceholderText"
-                                @keyup.enter="filterAsset"
-                                v-model="keyWord"
-                                :tabindex="11"
-                            >
-                                <div class="icon-search"></div>
-                            </MInputWithIcon>
-                        </div>
-                        <div class="blank"></div>
-                        <MButton
-                            :text="voucherForm.buttonText.selectAsset"
-                            type="outline-button"
-                            style="width: 130px"
-                            @click="() => {this.$emit('openAssetList')}"
-                            :tabindex="12"
-                        ></MButton>
-                    </div>
                     <div class="table-voucher-detail">
-                        <MTable
+                        <TableCombo
+                            :style="'width: 100%'"
                             :tableTh="voucherDetailThForm"
                             :footer="'newFooter'"
                             @cancelLoading="() => {this.$emit('cancelLoading')}"
@@ -114,7 +95,7 @@
                             :arrayTotal="arrayTotal"
                             :allowCheckBox = "false"
                             @edit="editAsset"
-                        ></MTable>
+                        ></TableCombo>
                     </div>
                 </div>
             </div>
@@ -177,19 +158,20 @@
 <script>
 import MInput from '@/components/MInput/MInput.vue';
 import MDatetime from '@/components/MDatetime/MDatetime.vue';
-import MInputWithIcon from '@/components/MInput/MInputWithIcon.vue';
+// import MInputWithIcon from '@/components/MInput/MInputWithIcon.vue';
 import MButton from '@/components/MButton/MButton.vue';
-import MTable from '@/components/MTable/MTable.vue';
+// import MTable from '@/components/MTable/MTable.vue';
 import resource from '@/js/resource';
 import config from '@/js/config';
 import MFormEditAsset from '../formEditAsset/MFormEditAsset.vue';
 import MPopup from '@/components/MPopup/MPopup.vue';
-import MTooltip from '@/components/MTooltip/MTooltip.vue'
+import MTooltip from '@/components/MTooltip/MTooltip.vue';
+import TableCombo from "@/components/MTableCombo/MTableCombo.vue";
 
 import axios from 'axios';
 export default {
     components: {
-        MInput, MDatetime, MInputWithIcon, MButton, MTable, MFormEditAsset, MPopup, MTooltip
+        MInput, MDatetime, /* MInputWithIcon,*/ MButton, /*MTable,*/ MFormEditAsset, MPopup, MTooltip, TableCombo
     },
     props: {
         dataAvailable: Array,

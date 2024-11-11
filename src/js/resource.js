@@ -194,6 +194,10 @@ var resource = {
         },
         {
             colName: "Bộ phận sử dụng",
+            style: "text-align: left; width: 170px"
+        },
+        {
+            colName: "Diễn giải",
             style: "text-align: left; min-width: 170px"
         },
         {
@@ -215,39 +219,43 @@ var resource = {
     voucherDetailThForm: [
         {
             colName: "STT",
-            style: "text-align: center; min-width: 49px",
+            style: "text-align: center; width: 49px",
             tooltipText: "Số thứ tự",
             tooltipStyle: "width: 100px; z-index: 1;",
         },
         {
             colName: "Mã tài sản",
-            style: "text-align: left; min-width: 100px"
+            style: "text-align: left; width: 150px"
         },
         {
             colName: "Tên tài sản",
-            style: "text-align: left; min-width: 150px"
+            style: "text-align: left; width: 150px"
         },
         {
             colName: "Bộ phận sử dụng",
             style: "text-align: left; width: 250px"
         },
         {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 250px"
+        },
+        {
             colName: "Nguyên giá",
-            style: "text-align: right; min-width: 100px"
+            style: "text-align: right; width: 150px"
         },
         {
             colName: "HM/KH lũy kế	",
-            style: "text-align: right; min-width: 150px",
+            style: "text-align: right; width: 150px",
             tooltipText: "Hao mòn/Khấu hao lũy kế",
             tooltipStyle: "width: 150px; z-index: 1; text-align: center; left: 25%;",
         },
         {
             colName: "Giá trị còn lại",
-            style: "text-align: right; min-width: 150px;"
+            style: "text-align: right; width: 150px;"
         },
         {
             colName: "",
-            style: "text-align: center; min-width: 98px",
+            style: "text-align: center; width: 98px",
         },
     ],
 
@@ -267,6 +275,10 @@ var resource = {
         },
         {
             name: "department_name",
+            style: "text-align: left;"
+        },
+        {
+            name: "description",
             style: "text-align: left;"
         },
         {
@@ -290,7 +302,11 @@ var resource = {
         },
         {
             name: "asset_code",
-            style: "text-align: left;"
+            style: "text-align: left;",
+            type: "combo",
+            entity: "asset_code",
+            entityEmit: "asset_id",
+            key: "Asset"
         },
         {
             name: "asset_name",
@@ -298,19 +314,30 @@ var resource = {
         },
         {
             name: "department_name",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "department_name",
+            entityEmit: "department_id",
+            key: "Department"
+        },
+        {
+            name: "description",
             style: "text-align: left;"
         },
         {
             name: "cost",
-            style: "text-align: right;"
+            style: "text-align: right;",
+            type: "number"
         },
         {
             name: "depreciation_value",
-            style: "text-align: right;"
+            style: "text-align: right;",
+            type: "number"
         },
         {
             name: "residual_value",
-            style: "text-align: right;" 
+            style: "text-align: right;",
+            type: "number"
         },
     ],
 
