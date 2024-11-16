@@ -1,6 +1,7 @@
 <template>
   <div>
     <TableCombo
+    v-if="false"
       :tableTh="voucherTh"
       :footer="'newFooter'"
       :arrayTotal="dataTotalVoucher"
@@ -51,6 +52,8 @@
       :tableChange2="tableChange2"
       :activeRow="activeRow"
     ></TableCombo>
+
+    <button @click="TestReport">abc</button>
   </div>
 </template>
 
@@ -100,6 +103,15 @@ export default {
           }
         })
         .catch((res) => {
+          console.log(res);
+        });
+    },
+
+    async TestReport() {
+      await axios
+        .get('https://localhost:44360/api/PrintRepor')
+        .then((res) => {
+          debugger
           console.log(res);
         });
     },

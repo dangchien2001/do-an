@@ -83,18 +83,19 @@
                             @cancelLoading="() => {this.$emit('cancelLoading')}"
                             @startLoading="() => {this.$emit('startLoading')}"   
                             model="voucherDetailForm"     
-                            colspan="5"   
+                            colspan="6"   
                             typeTable="table-container-non-border" 
                             :dataFooter="assetFooter"
                             :boldRow="true"
                             :allowFunctionCol="false"
                             :dataAvailable="dataForTable.map(formatAssetData)"
                             :allowEditAndDeleteCol="true"
-                            @delete="deleteAssetFromFormDetail"
+                            @delete="deleteAsset"
                             :allowPaging="false"
                             :arrayTotal="arrayTotal"
                             :allowCheckBox = "false"
-                            @edit="editAsset"
+                            @add="addAsset"
+                            @changeData="edit"
                         ></TableCombo>
                     </div>
                 </div>
@@ -218,6 +219,20 @@ export default {
         this.$emit("assetForNoActive", []);   
     },
     methods: {
+        edit(datas){
+            console.log(datas)
+            this.dataForTable = datas;
+            this.totalValue(this.dataForTable);
+        },
+
+        addAsset(datas){
+            this.dataForTable = datas;
+            this.totalValue(this.dataForTable);
+        },
+        deleteAsset(datas) {
+            this.dataForTable = datas;
+            this.totalValue(this.dataForTable);
+        },
         /**
          * Hàm focus mặc định
          * Created by: NDCHIEN(15/5/2023)
@@ -513,11 +528,11 @@ export default {
          */
         totalValue(listAsset) {
             var totalCost = 0;
-            listAsset.forEach(item => totalCost += item.cost);
+            listAsset.forEach(item => totalCost += item.cost || 0);
             var totalDepreciationValue = 0;
-            listAsset.forEach(item => totalDepreciationValue += item.depreciation_value);
+            listAsset.forEach(item => totalDepreciationValue += item.depreciation_value || 0);
             var totalResidualValue = 0;
-            listAsset.forEach(item => totalResidualValue += item.residual_value);
+            listAsset.forEach(item => totalResidualValue += item.residual_value || 0);
             this.arrayTotal = [totalCost, totalDepreciationValue, totalResidualValue];
         },
     },

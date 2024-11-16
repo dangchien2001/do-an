@@ -95,6 +95,23 @@ td {
     position: relative;
 }
 
+.add-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -419px -419px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.add-icon:hover {
+    z-index: 1;
+}
+
+.add-icon:hover .edit-tooltip {
+    display: block;
+}
+
 .edit-icon:hover {
     z-index: 1;
 }

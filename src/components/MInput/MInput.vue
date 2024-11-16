@@ -1,6 +1,6 @@
 <template>
     <div class="input-container">
-        <div class="label" v-if="label?.length > 0">
+        <div class="label" v-if="fieldLabel?.length > 0">
             {{ fieldLabel }}
             <span
                 style="color:red; font-size: 13px;"

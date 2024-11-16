@@ -43,7 +43,6 @@
                 :class="[activeRow == index ? 'row-active' : 'table-body-row', {'table-body-row-active' : rows[index]}, 'row-index']"            
                 v-for="(item, index) in datas"
                 :key="index"
-                @dblclick="editProduct(item.asset_id, dataAvailable[index][properties[1].name])"
                 @click="() => {
                     this.$emit('objectAfterClickRow', item);                
                 }"
@@ -69,7 +68,7 @@
                     class=""
                     v-for="(propertie, index) in properties"
                     :key="index"
-                    :style="propertie.style"
+                    :style="propertie.style"                    
                 >                    
                     <MInput
                         v-if="propertie.type == undefined"
@@ -79,6 +78,7 @@
                     <MNumberInput
                         v-if="propertie.type == 'number'"
                         v-model="item[propertie.name]"
+                        @valueSelected="() => this.$emit('changeData', datas)"
                     ></MNumberInput>
                     <MCombobox
                         :entity="propertie.entity"
@@ -126,19 +126,17 @@
                     v-if="allowEditAndDeleteCol"
                 >
                     <div 
-                        class="edit-icon"
-                        @click="editProduct('', dataAvailable[index][properties[1].name])"
+                        class="add-icon"
+                        @click="addProduct(index)"
                     >
                         <MTooltip
                             class="edit-tooltip" 
-                            :text="table.iconTooltip.edit"
+                            :text="table.iconTooltip.add"
                         ></MTooltip>
                     </div>
                     <div 
                         class="delete-icon"
-                        @click="() => {
-                            this.$emit('delete', dataAvailable[index][properties[1].name])
-                        }"
+                        @click="deleteRow(index)"
                     >
                         <MTooltip
                             class="delete-tooltip"
@@ -815,7 +813,19 @@
                     this.$emit('edit', code);
                 }
             },
+
+            addProduct(index) {
+                this.datas.splice(index + 1, 0, {});
+                this.$emit('add', this.datas);
+            },
     
+            deleteRow(index) {
+                if(this.datas.length > 1) {
+                    this.datas.splice(index, 1);
+                    this.$emit('delete', this.datas);
+                }
+            },
+
             /**
              * Hàm nhân bản tài sản
              * Created by: NDCHIEN(2/3/2023)
@@ -832,6 +842,8 @@
             closeForm() {
                 this.isShowForm = false;
             },
+
+
             
             /**
              * Hàm đóng form nhân bản
@@ -973,8 +985,7 @@
     
             }
         },
-        watch: {
-    
+        watch: {   
             /**
              * gán tổng số trang từ prop cho biến totalPage
              * Created by: NDCHIEN(19/4/2023)
@@ -1025,8 +1036,8 @@
              */
             dataAvailable: function(newValue) {
                 if(newValue != undefined) {
-                    this.datas = newValue;
-                    this.data2 = newValue;
+                    this.datas = newValue.length > 0 ? newValue : [{}];
+                    this.data2 = newValue.length > 0 ? newValue : [{}];
                 }
             },
     
@@ -1243,9 +1254,9 @@
                 formType: resource.formType,
                 paging: resource.paging,
     
-                datas: this.dataAvailable,
+                datas: this.dataAvailable.length > 0 ? this.dataAvailable : [{}],
     
-                data2: this.dataAvailable,
+                data2: this.dataAvailable.length > 0 ? this.dataAvailable : [{}],
     
                 // Biến lưu tổng số bản ghi
                 TotalData: 0,

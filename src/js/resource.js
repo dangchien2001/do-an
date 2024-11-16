@@ -585,7 +585,8 @@ var resource = {
     table: {
         iconTooltip: {
             edit: "Sửa",
-            delete: "Xóa"
+            delete: "Xóa",
+            add: "Thêm"
         }
     },
 
