@@ -96,6 +96,7 @@
                             :allowCheckBox = "false"
                             @add="addAsset"
                             @changeData="edit"
+                            @changeDataCombo="(dataEmit, key, index, data) => changeDataCombo(dataEmit, key, index, data)"
                         ></TableCombo>
                     </div>
                 </div>
@@ -219,8 +220,12 @@ export default {
         this.$emit("assetForNoActive", []);   
     },
     methods: {
+        changeDataCombo(dataEmit, key, index, data) {
+            if(key == 'Asset') {
+                data[index].asset_name = dataEmit.asset_name;
+            }
+        },
         edit(datas){
-            console.log(datas)
             this.dataForTable = datas;
             this.totalValue(this.dataForTable);
         },

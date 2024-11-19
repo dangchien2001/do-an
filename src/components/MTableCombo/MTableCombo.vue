@@ -66,8 +66,8 @@
                 <!-- dữ liệu col -->
                 <td
                     class=""
-                    v-for="(propertie, index) in properties"
-                    :key="index"
+                    v-for="(propertie, indextd) in properties"
+                    :key="indextd"
                     :style="propertie.style"                    
                 >                    
                     <MInput
@@ -87,6 +87,7 @@
                         v-if="propertie.type == 'combo'"
                         v-model="item[propertie.name]"
                         :dataAvailable="dataComboboxs.filter(dataCombobox => dataCombobox.key == propertie.key)[0]?.data"
+                        @dataEmit="(dataEmit) => changeDataCombo(dataEmit, propertie.key, propertie.entityEmit, index)"
                     ></MCombobox>
                     <MDatetime
                         v-if="propertie.type == 'date'"
@@ -647,6 +648,9 @@
     
     
         methods: {
+            changeDataCombo(dataEmit, keyData, entityEmit, index) {
+                    this.$emit('changeDataCombo', this.dataComboboxs.find(dataCombobox => dataCombobox.key == keyData).data.filter(item => item[entityEmit] == dataEmit)[0], keyData, index, this.datas);
+            },
             getDataForCombobox(keyData){
                 if(keyData.includes('Departments')){
                     axios
