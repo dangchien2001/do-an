@@ -25,6 +25,12 @@ var config = {
         }
     },
 
+    accountAPI: {
+        getAccountList: function() {
+            return `https://localhost:7210/api/AccountSystems`
+        }
+    },
+
     /**
      * API của form sửa tài sản trong chứng từ
      * Created by: NDCHIEN(8/5/2023)

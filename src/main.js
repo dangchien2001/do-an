@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import {createRouter, createWebHistory} from 'vue-router'
 import AssetView from './views/AssetView/AssetView.vue'
+import AccountList from './pages/accountList/AccountList.vue'
 import TheContent from './layouts/TheContent/TheContent.vue'
 import clickOutSide from '@/directive/clickOutSide'
 import TheTest from './views/Test/TheTest.vue'
@@ -13,6 +14,7 @@ import store from './js/store'
 
 const routers = [
     {path: "/", component: TheContent},
+    {path: "/AccountList", component: AccountList},
     {path: "/asset", component: AssetView},
     {path: "/ChangeInfomation", component: TheTest},
     {path: "/CheckAgain", component: AccountManage}

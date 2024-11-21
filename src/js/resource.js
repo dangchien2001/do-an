@@ -57,8 +57,8 @@ var resource = {
                     name: "collateral",
                     class: "collateral-icon",
                     active: "",
-                    text: "Tài sản HT - ĐB",
-                    link: "",
+                    text: "Tài khoản",
+                    link: "AccountList",
                 },
                 {
                     // icon công cụ, dụng cụ
@@ -259,6 +259,41 @@ var resource = {
         },
     ],
 
+    accountThForm: [
+        {
+            colName: "Số tài khoản",
+            style: "text-align: left; width: 150px; padding: 0 20px",
+        },
+        {
+            colName: "Tên tài khoản",
+            style: "text-align: left; width: 250px; padding: 0 20px"
+        },
+        {
+            colName: "Nhóm tài khoản",
+            style: "text-align: left; width: 150px; padding: 0 20px"
+        },
+        {
+            colName: "Tính chất",
+            style: "text-align: left; width: 100px; padding: 0 20px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 250px; padding: 0 20px"
+        },
+        {
+            colName: "Dư nợ",
+            style: "text-align: right; width: 150px; padding: 0 20px"
+        },
+        {
+            colName: "Dư có",
+            style: "text-align: right; width: 150px; padding: 0 20px"
+        },
+        {
+            colName: "",
+            style: "text-align: center; width: 98px; padding: 0 20px",
+        },
+    ],
+
     // mảng chứa căn lề các dòng thuộc tính
     voucherDetail: [
         {
@@ -339,6 +374,40 @@ var resource = {
             style: "text-align: right;",
             type: "number"
         },
+    ],
+
+    accountList: [
+        {
+            name: "account_number",
+            style: "text-align: left; padding: 0 20px",
+            key: true
+        },
+        {
+            name: "account_name",
+            style: "text-align: left; padding: 0 20px"
+        },
+        {
+            name: "account_number_parent",
+            style: "text-align: left; padding: 0 20px"
+        },
+        {
+            name: "account_type",
+            style: "text-align: left; padding: 0 20px"
+        },
+        {
+            name: "debit_amount",
+            style: "text-align: right; padding: 0 20px",
+            type: "number"
+        },
+        {
+            name: "credit_amount",
+            style: "text-align: right; padding: 0 20px",
+            type: "number"
+        },
+        {
+            name: "description",
+            style: "text-align: left; padding: 0 20px"
+        }
     ],
 
     // Mảng chứa các thuộc tính của footer bảng

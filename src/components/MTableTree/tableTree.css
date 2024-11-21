@@ -1,0 +1,521 @@
+.table-container {
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    border-radius: 3.5px 3.5px 0px 0px;
+    border-right: 1px solid #afafaf;
+    border-left: 1px solid #afafaf;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .16);
+    position: relative;
+    width: 100%;
+}
+
+.table-container-non-border {
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #ffffff;
+    border-radius: 3.5px 3.5px 0px 0px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .16);
+    position: relative;
+    width: 100%;
+}
+
+.table-header  {
+    color: #1F1F1F;
+    height: 39px;
+    font-family: Roboto Bold;
+    font-size: 13px;
+    position: sticky;
+    top: 0;
+    background-color: #FFFFFF;
+    border-radius: 3.5px 3.5px 0px 0px;
+    z-index: 1;
+    
+}
+
+.table-select-box-col, .table-header-col {
+    border-bottom: 1px solid rgba(0, 0, 0, .16);
+}
+
+.table-body-row {
+    height: 39px;
+    color: #1F1F1F;
+    cursor: pointer;
+}
+
+.table-body-row:nth-child(2) td {
+    border: 0px;
+}
+
+
+.table-body-row-active {
+    background-color: rgba(26, 164, 200, .04);
+}
+
+.table-body-row:hover {
+    background-color: rgba(26, 164, 200, .04);
+}
+
+.table-select-box-col, .table-select-box-col-td {
+    min-width: 46px;
+    padding-left: 16px;
+}
+
+td {
+    border-top: 1px solid rgba(0, 0, 0, .16);
+}
+
+.table-select-box-col,
+.table-header-col {
+    border-top: 1px solid rgba(0, 0, 0, .16);
+    position: relative;
+}
+
+.table-header-col:hover .tooltip-table {
+    display: block;
+}
+
+.tooltip-table {
+    position: absolute; 
+    top: 80%;
+    display: none;
+}
+
+.function-col {
+    text-align: center;
+    width: 98px;
+}
+
+.edit-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -156px -68px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.edit-icon:hover {
+    z-index: 1;
+}
+
+.edit-icon:hover .edit-tooltip {
+    display: block;
+}
+
+.edit-tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100px;
+    display: none;
+}
+
+.clone-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -244px -112px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    position: relative;
+}
+
+.clone-icon:hover {
+    z-index: 1;
+}
+
+.clone-icon:hover .clone-tooltip {
+    display: block;
+}
+
+.clone-tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100px;
+    display: none;
+}
+
+.delete-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -463px -111px;
+	width: 18px;
+	height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    position: relative;
+}
+
+.delete-icon:hover {
+    z-index: 1;
+}
+
+.delete-icon:hover .delete-tooltip {
+    display: block;
+}
+
+.delete-tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100px;
+    display: none;
+}
+
+/*
+    style cho phân trang
+*/
+
+tr {
+    outline: none;
+}
+
+.footer-content {
+    height: 39px;
+    position: sticky;
+    bottom: 0;
+    background-color: #FFFFFF;
+}
+
+.footer-content-function {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.total-data {
+    margin-left: 17px;
+    font-size: 11px;
+}
+
+.number-of-data {
+    font-family: Roboto Bold;
+}
+
+.text-of-data {
+    font-size: 11px;
+}
+
+.number-of-data-in-page {
+    height: 25px;
+    width: 59px;
+    background-color: #ffffff;
+    border-radius: 2.625px;
+    border: 1px solid #afafaf;
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.number-of-data-select {
+    font-size: 11px;
+    margin-left: 14px;
+}
+
+.number-of-data-in-page-list {
+    width: 35px;
+    background-color: #ffffff;
+    border-radius: 2.625px;
+    border: 1px solid #afafaf;
+    margin-left: 30px;
+    position: absolute;
+    bottom: 100%;
+    left: calc(-50% - 2px);
+}
+
+.number-of-data-in-page-item {
+    height: 25px;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #afafaf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 100%;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.number-of-data-in-page-item:hover {
+    background-color: #1aa4c8;
+    color: #FFFFFF;
+}
+
+.number-of-data-dropdown-button {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -72px -338px;
+    width: 8px;
+    height: 5px;
+    margin-left: 14px;
+    cursor: pointer;
+}
+
+.number-of-data-dropdown-button-close {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -28px -338px;
+    width: 8px;
+    height: 5px;
+    margin-left: 14px;
+    cursor: pointer;
+}
+
+.list-page {
+    display: flex;
+    align-items: center;
+}
+
+.list-page-pre-button {
+    /* background-color: #ffffff; */
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.list-page-pre-button-disable {
+    /* background-color: #ffffff; */
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: no-drop;
+}
+
+.list-page-pre-button-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -206px -248px;
+    width: 5px;
+    height: 8px;
+}
+
+.page-number-one {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.page-number-two {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.three-dot {
+    font-size: 13px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.page-last-number {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    margin-left: 9px;
+    cursor: pointer;
+}
+
+/* dòng này phải để dưới để ưu tiên sau cùng dùng để style ô index được kích hoạt */
+.page-number-active {
+    background-color: #f5f5f5;
+    font-family: Roboto Bold;
+}
+
+.list-page-next-button {
+    /* background-color: #ffffff; */
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.list-page-next-button-disable {
+    /* background-color: #ffffff; */
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: no-drop;
+}
+
+.list-page-next-button-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -250px -248px;
+    width: 5px;
+    height: 8px;
+}
+
+.count-product {
+    text-align: right;
+    font-size: 13px;
+    font-family: Roboto Bold;
+}
+
+.count-price {
+    text-align: right;
+    font-size: 13px;
+    font-family: Roboto Bold;
+}
+
+.HM-KH {
+    text-align: right;
+    font-size: 13px;
+    font-family: Roboto Bold;
+}
+
+.rest-product {
+    text-align: right;
+    font-size: 13px;
+    font-family: Roboto Bold;
+}
+
+/* style cho tooltip */
+.table-header-tooltip {
+    position: absolute;
+    top: 80%;
+    left: 958px;
+    display: none;
+}
+
+.col-7:hover ~ .table-header-tooltip {
+    display: block;
+}
+
+.table-header-tooltip-2 {
+    position: absolute;
+    top: 80%;
+    left: 46px;
+    display: none;
+}
+
+.col-0:hover~.table-header-tooltip-2 {
+    display: block;
+}
+
+.pagging-box {
+    height: 20px;
+    margin-left: 10px;
+    display: flex;
+}
+
+.page {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.page-active {
+    background-color: #f5f5f5;
+    font-family: Roboto Bold;
+}
+
+.footer-table-v2 {
+    position: sticky; bottom: 0px; left: 0px; width: 100%; border-collapse: separate; border-spacing: 0;
+    background-color: #FFFFFF;
+}
+
+.bold-row {
+    background-color: rgb(236, 234, 234);
+}
+
+.row-active {
+    background: rgba(26, 164, 200, .3);
+    height: 39px;
+    color: #1F1F1F;
+    cursor: pointer;
+}
+
+.row-active:nth-child(2) td {
+    border: 0px;
+}
+
+.nullData {
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/icons/ko-co-du-lieu.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, .46);
+}
+
+.open-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -375px -419px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.open-icon:hover {
+    z-index: 1;
+}
+
+.open-icon:hover .edit-tooltip {
+    display: block;
+}
+
+.close-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -375px -463px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.close-icon:hover {
+    z-index: 1;
+}
+
+.close-icon:hover .edit-tooltip {
+    display: block;
+}

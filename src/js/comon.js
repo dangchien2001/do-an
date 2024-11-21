@@ -40,6 +40,25 @@ var comon = {
 
         return price;
     },
+    buildTree(data, id, parent_id) {
+        let tree = [];
+        let lookup = {};
+  
+        data.forEach((item) => {
+          lookup[item[id]] = { ...item, children: [], level: 0 };
+        });
+  
+        data.forEach((item) => {
+          if (item[parent_id] === '') {
+            tree.push(lookup[item[id]]);
+          } else {
+            lookup[item[parent_id]].children.push(lookup[item[id]]);
+            lookup[item[id]].level = lookup[item[parent_id]].level + 1;
+          }
+        });
+  
+        return tree;
+      },
     formatDateForDateInput(datetime) {
         try {
             if (datetime != null && datetime != undefined) {
