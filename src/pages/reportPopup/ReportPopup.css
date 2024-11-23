@@ -1,0 +1,26 @@
+.report-popup {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.header-report {
+    height: 46px;
+    width: 100%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report {
+    height: calc(100% - 50px);
+    width: 100%;
+}
+
+.report-iframe {
+    border: 0px;
+}

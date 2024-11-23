@@ -1,3 +1,6 @@
+import axios from "axios";
+import config from "@/js/config";
+
 var comon = {
     formatDate(datetime) {
         try {
@@ -111,6 +114,19 @@ var comon = {
             voucher_code: asset.voucher_code
         }))
     },
+
+    async printReport() {
+        var url = '';
+        await axios
+        .get(config.printReportAPI.getReport(), {
+            method: 'GET',
+            responseType: 'blob'
+          })
+        .then((res) => {
+            url = URL.createObjectURL(res.data);           
+        })
+        return url;
+    }
 };
 
 export default comon;

@@ -51,6 +51,30 @@
     display: flex;
     align-items: center;
     background-color: rgba(0, 0, 0, .16);
+    justify-content: space-between;
+    position: relative;
+}
+
+.report-container {
+    position: absolute;
+    width: 400px;
+    bottom: 50px;
+    left: calc(50% - 200px);
+    background-color: white;
+}
+
+.report-item {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #afafaf;
+    padding: 0 12px;
+}
+
+.report-item:hover {
+    background-color: rgba(0, 0, 0, .16);
+    cursor: pointer;
 }
 
 .form-body-voucher-detail {
@@ -175,3 +199,23 @@
     bottom: 100%;
     display: none;
 }
+
+.submit-button {
+    display: flex;
+}
+
+.center-button {
+    display: flex;
+    width: 255px;
+    justify-content: center;
+}
+
+.left-button {
+    display: flex;
+    width: 255px;
+}
+
+.print-report {
+
+}
+

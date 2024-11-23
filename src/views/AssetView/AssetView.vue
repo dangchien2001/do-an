@@ -193,6 +193,7 @@
                 }
             }"
             ref="formDetail"
+            @printReport="(url) => {this.reportURL = url; this.isShowReport = true;}"
         ></MFormDetail>
 
         <MListAssetNoActive 
@@ -216,6 +217,12 @@
             }"
             ref="listAssetNoActive"
         ></MListAssetNoActive>
+
+        <ReportPopup 
+        v-if="isShowReport" 
+        :url="reportURL"
+        @cancelReport="() => {this.isShowReport = false}"
+        ></ReportPopup>
 
         <MPopup
             content=""
@@ -264,6 +271,7 @@ import resource from '@/js/resource';
 import config from '@/js/config';
 import MFormDetail from '../../pages/formDetail/MFormDetail.vue'
 import MListAssetNoActive from '@/pages/listAssetNoActive/MListAssetNoActive.vue'
+import ReportPopup from '@/pages/reportPopup/ReportPopup.vue'
 import MPopup from '@/components/MPopup/MPopup.vue'
 import axios from 'axios'
 import MLoadingTiny from '@/components/MLoading/MLoadingTiny.vue'
@@ -275,7 +283,7 @@ export default {
         
     },
     components: {
-        MButton, MIconButton, MInputWithIcon, Splitpanes, Pane, MTable, MFormDetail, MListAssetNoActive, MPopup, MLoadingTiny, MTooltip
+        MButton, MIconButton, MInputWithIcon, Splitpanes, Pane, MTable, MFormDetail, MListAssetNoActive, MPopup, MLoadingTiny, MTooltip, ReportPopup
     },
     async created() {
         // gọi api phân trang bảng voucher đổ chứng từ vào table
@@ -596,6 +604,8 @@ export default {
             titlePopUp: "",
             listContentPopup: [],
             
+            reportURL: "",
+            isShowReport: false,
         }
     }
 }

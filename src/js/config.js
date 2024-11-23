@@ -43,6 +43,12 @@ var config = {
         getAsset: function(assetCode) {
             return `https://localhost:7210/api/Assets/Budget?assetCode=${assetCode}`
         }
+    },
+
+    printReportAPI: {
+        getReport: function(){
+            return `https://localhost:7210/api/Report`
+        }
     }
 }
 
