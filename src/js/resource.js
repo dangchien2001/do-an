@@ -19,7 +19,7 @@ var resource = {
                     items: [
                         {
                             text: "Ghi tăng",
-                            link: "/Asset",
+                            link: "/IncrementAsset",
                         },
                         {
                             text: "Thay đổi thông tin",
@@ -50,7 +50,7 @@ var resource = {
                             link: "/Other",
                         },                       
                     ],
-                    link: "/"
+                    link: "",
                 },
                 {
                     // icon tài sản đảm bảo
@@ -75,6 +75,12 @@ var resource = {
                     active: "",
                     text: "Danh mục",
                     link: "",
+                    items: [
+                        {
+                            text: "Tài sản",
+                            link: "/Asset",
+                        },
+                    ]
                 },
                 {
                     // icon tra cứu
@@ -341,11 +347,13 @@ var resource = {
             type: "combo",
             entity: "asset_code",
             entityEmit: "asset_id",
-            key: "Asset"
+            key: "Asset",
+            length: 20
         },
         {
             name: "asset_name",
-            style: "text-align: left;"
+            style: "text-align: left;",
+            length: 225
         },
         {
             name: "department_name",
@@ -353,11 +361,13 @@ var resource = {
             type: "combo",
             entity: "department_name",
             entityEmit: "department_id",
-            key: "Department"
+            key: "Department",
+            length: 225
         },
         {
             name: "description",
-            style: "text-align: left;"
+            style: "text-align: left;",
+            length: 225
         },
         {
             name: "cost",

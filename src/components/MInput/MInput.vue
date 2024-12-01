@@ -79,6 +79,7 @@ export default {
         emitValue(event) {
             this.$emit('update:modelValue', event.target.value);
             this.value = event.target.value;
+            this.$emit('valueSelected');
         }
 
     },

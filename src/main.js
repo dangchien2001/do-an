@@ -13,9 +13,9 @@ import store from './js/store'
 
 
 const routers = [
-    {path: "/", component: TheContent},
+    {path: "/Asset", component: TheContent},
     {path: "/AccountList", component: AccountList},
-    {path: "/asset", component: AssetView},
+    {path: "/IncrementAsset", component: AssetView},
     {path: "/ChangeInfomation", component: TheTest},
     {path: "/CheckAgain", component: AccountManage}
 ]

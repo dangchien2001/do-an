@@ -73,7 +73,8 @@
                     <MInput
                         v-if="propertie.type == undefined"
                         v-model="item[propertie.name]"
-                        :maxlength="20"
+                        :maxlength="propertie.length ?? 225"
+                        @valueSelected="() => this.$emit('changeData', datas)"
                     ></MInput>
                     <MNumberInput
                         v-if="propertie.type == 'number'"

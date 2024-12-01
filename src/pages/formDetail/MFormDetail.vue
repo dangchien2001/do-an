@@ -286,8 +286,14 @@ export default {
 
     changeDataCombo(dataEmit, key, index, data) {
       if (key == "Asset") {
+        data[index].asset_id = dataEmit.asset_id;
         data[index].asset_name = dataEmit.asset_name;
+        data[index].description = 'Ghi tăng tài sản ' + dataEmit.asset_name;     
       }
+      if(key == "Department") {     
+        data[index].department_id = dataEmit.department_id;
+      }
+      this.dataForTable = data;
     },
     edit(datas) {
       this.dataForTable = datas;
@@ -461,28 +467,13 @@ export default {
      */
     editVoucher() {
       var validateResult = this.validate();
+      var result = {
+        voucher: this.voucher.voucher,
+        voucherDetails: this.dataForTable
+      }
       if (validateResult) {
         axios
-          .put(this.voucherAPI.updateVoucher(this.voucher.voucher.voucher_id), {
-            voucher: {
-              row_index: 0,
-              voucher_id: this.voucher.voucher.voucher_id,
-              voucher_code: this.voucher.voucher.voucher_code,
-              voucher_date: this.voucher.voucher.voucher_date,
-              increment_date: this.voucher.voucher.increment_date,
-              description: this.voucher.voucher.description,
-              price: this.voucher.voucher.price,
-              created_by: "",
-              created_date: new Date(),
-              modified_by: "",
-              modified_date: new Date(),
-            },
-            asset_code_active: this.voucher.assetIds,
-            asset_code_no_active: this.assetForNoActive.map(
-              (item) => item.asset_id
-            ),
-            asset_ids: this.voucher.assetIds,
-          })
+          .put(this.voucherAPI.updateVoucher(this.voucher.voucher.voucher_id), result)
           .then(() => this.$emit("closeForm", this.formDetail.editSuccess))
           .catch((res) => this.$emit("showPopupError", res.response.data));
       }
@@ -550,9 +541,13 @@ export default {
      */
     insertVoucher() {
       var validateResult = this.validate();
+      var result = {
+        voucher: this.voucher.voucher,
+        voucherDetails: this.dataForTable
+      }
       if (validateResult) {
         axios
-          .post(this.voucherAPI.insertVoucher(), this.voucher)
+          .post(this.voucherAPI.insertVoucher(), result)
           .then(() => this.$emit("closeForm", this.formDetail.addSuccess))
           .catch((res) => this.$emit("showPopupError", res.response.data));
       }
@@ -578,9 +573,12 @@ export default {
       var row_index = index + 1;
       return {
         row_index: row_index,
+        asset_id: asset.asset_id,
         asset_code: asset.asset_code,
         asset_name: asset.asset_name,
+        department_id: asset.department_id,
         department_name: asset.department_name,
+        description: asset.description,
         cost: asset.cost,
         depreciation_value: asset.depreciation_value,
         residual_value: asset.residual_value,
@@ -615,9 +613,9 @@ export default {
         return false;
       }
       // phải chọn ít nhất 1 tài sản trong 1 chứng từ
-      else if (this.voucher.assetIds.length < 1) {
+      else if (this.dataForTable.length < 1) {
         this.$emit("showPopupError", {
-          UserMsg: this.formDetail.validate.needChooseAsset,
+          UserMsg: "Nhập ít nhất 1 tài sản",
         });
         return false;
       } else return true;
@@ -639,6 +637,7 @@ export default {
         (item) => (totalResidualValue += item.residual_value || 0)
       );
       this.arrayTotal = [totalCost, totalDepreciationValue, totalResidualValue];
+      this.voucher.voucher.price = totalCost;
     },
   },
   watch: {
