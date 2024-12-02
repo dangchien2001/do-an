@@ -112,7 +112,7 @@
                 }
               "
               model="voucherDetailForm"
-              colspan="6"
+              colspan="8"
               typeTable="table-container-non-border"
               :dataFooter="assetFooter"
               :boldRow="true"
@@ -285,6 +285,7 @@ export default {
     },
 
     changeDataCombo(dataEmit, key, index, data) {
+      console.log(dataEmit, key, index, data);
       if (key == "Asset") {
         data[index].asset_id = dataEmit.asset_id;
         data[index].asset_name = dataEmit.asset_name;
@@ -292,6 +293,12 @@ export default {
       }
       if(key == "Department") {     
         data[index].department_id = dataEmit.department_id;
+      }
+      if(key == "AccountSystemDebit") {     
+        data[index].account_system_debit = dataEmit.account_number;
+      }
+      if(key == "AccountSystemCredit") {     
+        data[index].account_system_credit = dataEmit.account_number;
       }
       this.dataForTable = data;
     },
@@ -578,6 +585,8 @@ export default {
         asset_name: asset.asset_name,
         department_id: asset.department_id,
         department_name: asset.department_name,
+        account_system_debit: asset.account_system_debit,
+        account_system_credit: asset.account_system_credit,
         description: asset.description,
         cost: asset.cost,
         depreciation_value: asset.depreciation_value,

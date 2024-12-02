@@ -80,6 +80,10 @@ var resource = {
                             text: "Tài sản",
                             link: "/Asset",
                         },
+                        {
+                            text: "Tài khoản",
+                            link: "/AccountList",
+                        },
                     ]
                 },
                 {
@@ -242,6 +246,14 @@ var resource = {
             style: "text-align: left; width: 250px"
         },
         {
+            colName: "TK nợ",
+            style: "text-align: left; width: 100px"
+        },
+        {
+            colName: "TK có",
+            style: "text-align: left; width: 100px"
+        },
+        {
             colName: "Diễn giải",
             style: "text-align: left; min-width: 250px"
         },
@@ -362,6 +374,24 @@ var resource = {
             entity: "department_name",
             entityEmit: "department_id",
             key: "Department",
+            length: 225
+        },
+        {
+            name: "account_system_debit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemDebit",
+            length: 225
+        },
+        {
+            name: "account_system_credit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemCredit",
             length: 225
         },
         {

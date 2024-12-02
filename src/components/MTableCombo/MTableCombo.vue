@@ -644,7 +644,7 @@
     
             this.activePage = this.numOfActivePage;
 
-            await this.getDataForCombobox(['Departments', 'Assets']);
+            await this.getDataForCombobox(['Departments', 'Assets', 'AccountSystems']);
         },
     
     
@@ -665,6 +665,14 @@
                         .get("https://localhost:7210/api/Assets")
                         .then(res => {
                             (this.dataComboboxs.push({key: 'Asset', data: res.data}))
+                        })
+                }
+                if(keyData.includes('AccountSystems')){
+                    axios
+                        .get("https://localhost:7210/api/AccountSystems/Detail")
+                        .then(res => {
+                            (this.dataComboboxs.push({key: 'AccountSystemDebit', data: res.data}));
+                            (this.dataComboboxs.push({key: 'AccountSystemCredit', data: res.data}))
                         })
                 }
             },
