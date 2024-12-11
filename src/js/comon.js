@@ -21,6 +21,7 @@ var comon = {
         }
     },
     formatMoney(price, symbol = "") {
+        console.log(price);
         Number.isNaN = function(price) { return typeof price === 'number' && isNaN(price); };
 
         if(typeof price === 'number') {

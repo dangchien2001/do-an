@@ -22,12 +22,12 @@ var resource = {
                             link: "/IncrementAsset",
                         },
                         {
-                            text: "Thay đổi thông tin",
-                            link: "/ChangeInfomation",
+                            text: "Điều chuyển TSCĐ",
+                            link: "/AssetTransfer",
                         },
                         {
                             text: "Đánh giá lại",
-                            link: "/CheckAgain",
+                            link: "/AssetAdjustment",
                         },
                         {
                             text: "Tính hao mòn",
@@ -186,6 +186,33 @@ var resource = {
         },
     ],
 
+    assetAdjustmentTh: [
+        {
+            colName: "Số chứng từ",
+            style: "text-align: left; width: 170px"
+        },
+        {
+            colName: "Ngày chứng từ",
+            style: "text-align: center; width: 200px"
+        },
+        {
+            colName: "Ngày hạch toán",
+            style: "text-align: center; width: 200px"
+        },        
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 49px; padding-left: 20px"
+        },
+        {
+            colName: "Tài sản",
+            style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "",
+            style: "text-align: center;  width: 98px",
+        },
+    ],
+
     // mảng chứa các cột bảng detail
     voucherDetailTh: [
         {
@@ -207,6 +234,14 @@ var resource = {
             style: "text-align: left; width: 170px"
         },
         {
+            colName: "TK nợ",
+            style: "text-align: left; min-width: 100px"
+        },
+        {
+            colName: "TK có",
+            style: "text-align: left; min-width: 100px"
+        },
+        {
             colName: "Diễn giải",
             style: "text-align: left; min-width: 170px"
         },
@@ -225,6 +260,60 @@ var resource = {
             style: "text-align: right; width: 170px; padding-right: 16px"
         },
     ],
+
+    assetTransferTH: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1; left: -50%",
+        },
+        {
+            colName: "Số điều chuyển",
+            style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "Ngày điều chuyển",
+            style: "text-align: center; width: 200px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 370px;"
+        },       
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 270px"
+        },
+        {
+            colName: "",
+            style: "text-align: center;  width: 98px",
+        },
+    ],
+
+    assetTransfer: [
+        {
+            name: "row_index",
+            style: "text-align: center;"
+        },
+        {
+            name: "ref_no",
+            style: "text-align: left; color: #1aa4c8",
+        },
+        {
+            name: "ref_date",
+            style: "text-align: center;",
+            type: "date"
+        },
+        {
+            name: "description",
+            style: "text-align: left;"
+        },
+        {
+            name: "amount",
+            style: "text-align: right;"
+        }
+    ],
+
     // mảng chứa th của table voucher detail trong form thêm, sửa
     voucherDetailThForm: [
         {
@@ -270,6 +359,39 @@ var resource = {
         {
             colName: "Giá trị còn lại",
             style: "text-align: right; width: 150px;"
+        },
+        {
+            colName: "",
+            style: "text-align: center; width: 98px",
+        },
+    ],
+
+    assetTransferDetailTH: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1;",
+        },
+        {
+            colName: "Mã tài sản",
+            style: "text-align: left; width: 150px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 150px"
+        },
+        {
+            colName: "Từ phòng ban",
+            style: "text-align: left; width: 250px"
+        },
+        {
+            colName: "Đến phòng ban",
+            style: "text-align: left; width: 250px"
+        },
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 250px"
         },
         {
             colName: "",
@@ -328,6 +450,14 @@ var resource = {
         },
         {
             name: "department_name",
+            style: "text-align: left;"
+        },
+        {
+            name: "account_system_debit",
+            style: "text-align: left;"
+        },
+        {
+            name: "account_system_credit",
             style: "text-align: left;"
         },
         {
@@ -415,6 +545,50 @@ var resource = {
             type: "number"
         },
     ],
+    
+    assetTransferDetail: [
+        {
+            name: "row_index",
+            style: "text-align: center;"
+        },
+        {
+            name: "asset_code",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "asset_code",
+            entityEmit: "asset_id",
+            key: "Asset",
+            length: 20
+        },
+        {
+            name: "description",
+            style: "text-align: left;",
+            length: 225
+        },
+        {
+            name: "from_department_name",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "department_name",
+            entityEmit: "department_id",
+            key: "FromDepartment",
+            length: 225
+        },
+        {
+            name: "to_department_name",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "department_name",
+            entityEmit: "department_id",
+            key: "ToDepartment",
+            length: 225
+        },           
+        {
+            name: "amount",
+            style: "text-align: right;",
+            type: "number"
+        }
+    ],
 
     accountList: [
         {
@@ -454,7 +628,10 @@ var resource = {
     assetFooter: [
         'TotalPrice', '', ''
     ],
-    
+
+    assetTransferFooter: [
+        ''
+    ],
 
     // Mảng chứa các thuộc tính đối tượng Product
     product: [
@@ -532,6 +709,35 @@ var resource = {
             name: "description",
             style: "text-align: left; padding-left: 20px; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
         }
+    ],
+
+    assetAdjustment: [
+        {
+            name: "ref_no",
+            style: "text-align: left; color: #1aa4c8",
+            type: "combo",
+            entity: "department_code",
+            entityEmit: "department_id",
+            key: "Department"
+        },
+        {
+            name: "ref_date",
+            style: "text-align: center;",
+            type: "date"
+        },
+        {
+            name: "posted_date",
+            style: "text-align: center;",
+            type: "date"
+        },        
+        {
+            name: "description",
+            style: "text-align: left; padding-left: 20px; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+        },
+        {
+            name: "asset_name",
+            style: "text-align: left;"
+        },
     ],
    
     // API 

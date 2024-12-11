@@ -1,0 +1,225 @@
+.title-asset {
+    font-size: 24px;
+    font-family: Roboto Bold;
+}
+
+.content-container-v2 {
+    padding-left: 17px;
+    padding-right: 17px;
+}
+
+.asset-header {
+    display: flex;
+}
+
+.icon-toggle-voucher-detail {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -110px -420px;
+	width: 20px;
+	height: 15px;
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+.icon-arrow-down-header {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -158px -249px;
+	width: 11px;
+	height: 7px;
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+.header-asset-blank {
+    flex: 1;
+}
+
+.search-asset {
+    width: 280px;
+}
+
+.icon-search-asset {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -243px -23px;
+	width: 18px;
+	height: 18px;
+}
+
+.function-bar-asset {
+    background-color: #ffffff;
+    padding: 16px 16px;
+    display: flex;
+}
+
+.voucher-container {
+    margin-top: 17px;
+}
+
+.icon-asset-print {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -331px -67px;
+	width: 18px;
+	height: 18px;
+}
+
+.icon-asset-3-dot {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -383px -26px;
+	width: 3px;
+	height: 13px;
+}
+
+.icon-voucher-delete {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -463px -111px;
+	width: 18px;
+	height: 18px;
+}
+
+.asset-table {
+    width: 100%;
+    height: calc(100% - 40px);
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.voucher-table-container {
+    height: calc(100% - 44px - 30px);
+        overflow-x: auto;
+        overflow-y: auto;
+        position: relative
+}
+
+.voucher-detail-table-container {
+    z-index: 0;
+    height: calc(100% - 43px);
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative
+}
+
+
+
+
+
+.icon-btn-asset {
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+.voucher-detail-header {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.voucher-detail-title {
+    font-family: Roboto Bold;
+    font-size: 17px;
+    padding-left: 17px;
+}
+
+.zoom-detail-container {
+    margin-right: 33px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.zoom-detail-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -245px -333px;
+	width: 14px;
+	height: 14px;
+}
+
+.tiny-detail-icon {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -289px -333px;
+	width: 14px;
+	height: 14px;
+}
+
+.voucher-detail-loading {
+    width: 100%;
+    height: 100%;
+}
+
+.toggle-detail-table {
+    position: relative;
+    z-index: 2;
+}
+
+.select-toggle-detail {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    border: 1px solid rgba(0, 0, 0, .16);
+}
+
+.select-toggle-detail-row {
+    height: 40px;
+    width: 160px;   
+    background-color: #FFFFFF;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.select-toggle-detail-row:nth-child(1) {
+    border-bottom: 1px solid rgba(0, 0, 0, .16);
+}
+
+.select-toggle-detail-row:hover {
+    background-color: #d6ebee;
+}
+
+.open-detail-table {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -22px -421px;
+	width: 20px;
+	height: 15px;
+}
+
+.close-detail-table {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -110px -420px;
+	width: 20px;
+	height: 15px;
+}
+
+.select-toggle-detail-text {
+    margin-left: 10px;
+}
+
+.icon-arrow-up-header {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -114px -249px;
+	width: 11px;
+	height: 7px;
+}
+
+.icon-toggle-voucher-detail-2 {
+    background: url('../../assets/icons/qlts-icon.png') no-repeat -22px -421px;
+	width: 20px;
+	height: 14px;
+}
+
+.zoom-tooltip {
+    position: absolute; 
+    top: 100%; 
+    right: 0;
+    display: none;
+    width: 70px;
+    text-align: center;
+}
+
+.zoom-detail-container:hover .zoom-tooltip {
+    display: block;
+}
+
+.add-btn-voucher-container {
+    position: relative;
+}
+
+.add-btn-voucher-container:hover .add-btn-voucher-tooltip {
+    display: block;
+}
+
+.add-btn-voucher-tooltip {
+    position: absolute;
+    top: 100%;
+    display: none;
+}

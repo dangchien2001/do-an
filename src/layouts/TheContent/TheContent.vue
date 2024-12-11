@@ -167,7 +167,7 @@
             <span style="font-family: Roboto Bold;">{{msgPopupDeleteErrorNumber < 10 ? `0${msgPopupDeleteErrorNumber}` : `${msgPopupDeleteErrorNumber}`}}</span> {{msgPopupDeleteErrorText}}
         </span>
         <span v-if="listActive == 1 && listAssetForDelete.length == 1">
-            Tài sản có mã <span style="font-family: Roboto Bold;">{{assetCodeForDeleteOnceError}}</span> đã phát sinh chứng từ ghi tăng có mã <span style="font-family: Roboto Bold;">{{voucherCodeForDeleteOnceError}}</span>
+            Tài sản có mã <span style="font-family: Roboto Bold;">{{assetCodeForDeleteOnceError}}</span> đã phát sinh chứng từ ghi tăng có mã <span style="font-family: Roboto Bold;">{{'CT00000001'}}</span>
         </span>
         </MPopup>
         

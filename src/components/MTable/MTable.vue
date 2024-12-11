@@ -764,6 +764,7 @@ export default {
          * Created by: NDCHIEN(2/3/2023)
          */
         editProduct(item, code) {
+            console.log(this.dataAvailable)
             if((item != null || item != undefined) && item.length == 36) {
                 this.data = item;
                 this.isShowForm = true;

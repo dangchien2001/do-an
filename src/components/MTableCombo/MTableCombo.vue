@@ -657,7 +657,9 @@
                     axios
                         .get("https://localhost:7210/api/Departments")
                         .then(res => {
-                            (this.dataComboboxs.push({key: 'Department', data: res.data}))
+                            (this.dataComboboxs.push({key: 'Department', data: res.data}));
+                            (this.dataComboboxs.push({key: 'FromDepartment', data: res.data}));
+                            (this.dataComboboxs.push({key: 'ToDepartment', data: res.data}))
                         })
                 }
                 if(keyData.includes('Assets')){
@@ -1049,8 +1051,8 @@
              */
             dataAvailable: function(newValue) {
                 if(newValue != undefined) {
-                    this.datas = newValue.length > 0 ? newValue : [{}];
-                    this.data2 = newValue.length > 0 ? newValue : [{}];
+                    this.datas = newValue?.length > 0 ? newValue : [{}];
+                    this.data2 = newValue?.length > 0 ? newValue : [{}];
                 }
             },
     
@@ -1080,7 +1082,7 @@
              * @param {*} newValue 
              */
             data2: function(newValue) {
-                if(newValue.length > 1) {
+                if(newValue?.length > 1) {
                     this.datas = newValue;
                 }
             },
@@ -1267,9 +1269,9 @@
                 formType: resource.formType,
                 paging: resource.paging,
     
-                datas: this.dataAvailable.length > 0 ? this.dataAvailable : [{}],
+                datas: this.dataAvailable?.length > 0 ? this.dataAvailable : [{}],
     
-                data2: this.dataAvailable.length > 0 ? this.dataAvailable : [{}],
+                data2: this.dataAvailable?.length > 0 ? this.dataAvailable : [{}],
     
                 // Biến lưu tổng số bản ghi
                 TotalData: 0,

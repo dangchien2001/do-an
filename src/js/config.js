@@ -1,3 +1,5 @@
+
+
 var config = {
     /**
      * Danh sách API của form chi tiết chứng từ và màn hình danh sách chứng từ
@@ -23,6 +25,34 @@ var config = {
         getMaxCode: function() {
             return `https://localhost:7210/api/Vouchers/maxCode`
         }
+    },
+
+    assetAdjustmentAPI: {
+        filterVoucher: function(keyWord, pageSize, pageNumber) {
+            return `https://localhost:7210/api/AssetAdjustments/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
+        }
+    },
+
+    AssetTransferAPI: {
+        deleteVoucher: "https://localhost:7210/api/AssetTransfers/List",
+        filterVoucher: function(keyWord, pageSize, pageNumber) {
+            return `https://localhost:7210/api/AssetTransfers/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
+        },
+        getVoucherByCode: function(voucherCode) {
+            return `https://localhost:7210/api/AssetTransfers/Code?voucherCode=${voucherCode}`
+        },
+        getMaxCode: function() {
+            return `https://localhost:7210/api/AssetTransfers/maxCode`
+        },
+        updateVoucher: function(voucherID) {
+            return `https://localhost:7210/api/AssetTransfers/Detail/${voucherID}`
+        },
+        getVoucherDetail: function(voucherID) {
+            return `https://localhost:7210/api/AssetTransferDetails/filter?voucherId=${voucherID}`
+        },
+        insertVoucher: function() {
+            return `https://localhost:7210/api/AssetTransfers/Detail`
+        },
     },
 
     accountAPI: {

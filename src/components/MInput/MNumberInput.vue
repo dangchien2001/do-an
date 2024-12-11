@@ -142,10 +142,10 @@ export default {
          */
         handleInput(event) {
             if(this.alowNull == false) {
-                const result = this.checkInputIsError(Number(event.target.value.replaceAll(',', ''))); 
+                const result = this.checkInputIsError(Number(event.target.value.replaceAll('.', ''))); 
                 this.$emit("result", result);
             }
-            this.$emit('update:modelValue', Number(event.target.value.replaceAll(',', '')));
+            this.$emit('update:modelValue', Number(event.target.value.replaceAll('.', '')));
             this.$emit('valueSelected');
         },
 
