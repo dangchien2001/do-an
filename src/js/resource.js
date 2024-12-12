@@ -188,6 +188,12 @@ var resource = {
 
     assetAdjustmentTh: [
         {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1; left: -50%",
+        },
+        {
             colName: "Số chứng từ",
             style: "text-align: left; width: 170px"
         },
@@ -206,6 +212,29 @@ var resource = {
         {
             colName: "Tài sản",
             style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "",
+            style: "text-align: center;  width: 98px",
+        },
+    ],
+
+    assetAdjustmentDetailTh: [
+        {
+            colName: "Nội dung",
+            style: "text-align: left; min-width: 200px; padding-left: 20px"
+        },
+        {
+            colName: "Thông tin cũ",
+            style: "text-align: right; width: 300px"
+        },
+        {
+            colName: "Thông tin điều chỉnh",
+            style: "text-align: right; width: 300px"
+        },
+        {
+            colName: "Thông tin chênh lệch",
+            style: "text-align: right; width: 300px; padding-right: 20px"
         },
         {
             colName: "",
@@ -432,6 +461,48 @@ var resource = {
             colName: "",
             style: "text-align: center; width: 98px; padding: 0 20px",
         },
+    ],
+
+    assetAdjustmentDetail: [
+        {
+            name: "title",
+            style: "text-align: left; padding-left: 20px",
+        },
+        {
+            name: "info",
+            style: "text-align: right;"
+        },
+        {
+            name: "new",
+            style: "text-align: right;"
+        },
+        {
+            name: "final",
+            style: "text-align: right; padding-right: 20px"
+        }
+    ],
+
+    assetAdjustmentDetailForm: [
+        {
+            name: "title",
+            style: "text-align: left; padding-left: 20px",
+            length: 225
+        },
+        {
+            name: "info",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "new",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "final",
+            style: "text-align: right; padding-right: 20px",
+            type: "number"
+        }
     ],
 
     // mảng chứa căn lề các dòng thuộc tính
@@ -712,6 +783,10 @@ var resource = {
     ],
 
     assetAdjustment: [
+        {
+            name: "row_index",
+            style: "text-align: center;"
+        },
         {
             name: "ref_no",
             style: "text-align: left; color: #1aa4c8",

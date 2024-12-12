@@ -30,7 +30,19 @@ var config = {
     assetAdjustmentAPI: {
         filterVoucher: function(keyWord, pageSize, pageNumber) {
             return `https://localhost:7210/api/AssetAdjustments/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
-        }
+        },
+        getVoucherDetail: function(voucherID) {
+            return `https://localhost:7210/api/AssetAdjustmentDetails/filter?voucherId=${voucherID}`
+        },
+        getVoucherByCode: function(voucherCode) {
+            return `https://localhost:7210/api/AssetAdjustments/Code?voucherCode=${voucherCode}`
+        },
+        getMaxCode: function() {
+            return `https://localhost:7210/api/AssetAdjustments/maxCode`
+        },
+        updateVoucher: function(voucherID) {
+            return `https://localhost:7210/api/AssetAdjustments/Detail/${voucherID}`
+        },
     },
 
     AssetTransferAPI: {

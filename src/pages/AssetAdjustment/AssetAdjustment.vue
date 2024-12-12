@@ -110,7 +110,7 @@
                         :allowPaging="true"
                         :allowCheckBox = "true"
                         @edit="handleEdit"
-                        entity="voucher_code"
+                        entity="ref_id"
                         @listAssetForDelete="(data) => voucherCodeForDelete = data"
                         @delete="data => {voucherCodeForDeleteOnce = data; isShowPopUpDeleteOnce = true}"
                         :tableChange2 = "tableChange2"
@@ -136,7 +136,7 @@
                         :footer="''"                       
                         @cancelLoading="() => {this.$emit('cancelLoading')}"
                         @startLoading="() => {this.$emit('startLoading')}"   
-                        model="voucherDetail"     
+                        model="assetAdjustmentDetail"     
                         colspan="5"   
                         typeTable="table-container-non-border" 
                         :dataFooter="assetFooter"
@@ -144,7 +144,7 @@
                         :allowFunctionCol="false"                        
                         :dataAvailable="dataVoucherDetail"  
                         :allowCheckBox = "false"      
-                                   
+
                     ></MTable>
                     
                 </div>
@@ -155,7 +155,7 @@
             </Pane>
         </splitpanes >
 
-        <MFormDetail 
+        <AssetAdjustmentDetail
             v-if="isShowForm"
             @exitForm="() => {
                 if(isShowListAsset == false) {
@@ -194,7 +194,7 @@
             }"
             ref="formDetail"
             @printReport="(url) => {this.reportURL = url; this.isShowReport = true;}"
-        ></MFormDetail>
+        ></AssetAdjustmentDetail>
 
         <MListAssetNoActive 
             v-if="isShowListAsset"
@@ -269,13 +269,13 @@ import 'splitpanes/dist/splitpanes.css'
 import MTable from '@/components/MTable/MTable.vue';
 import resource from '@/js/resource';
 import config from '@/js/config';
-import MFormDetail from '../../pages/formDetail/MFormDetail.vue'
 import MListAssetNoActive from '@/pages/listAssetNoActive/MListAssetNoActive.vue'
 import ReportPopup from '@/pages/reportPopup/ReportPopup.vue'
 import MPopup from '@/components/MPopup/MPopup.vue'
 import axios from 'axios'
 import MLoadingTiny from '@/components/MLoading/MLoadingTiny.vue'
 import MTooltip from '@/components/MTooltip/MTooltip.vue'
+import AssetAdjustmentDetail from '../AssetAdjustmentDetail/AssetAdjustmentDetail.vue'
 
 export default {
     name: 'AssetView',
@@ -283,7 +283,7 @@ export default {
         
     },
     components: {
-        MButton, MIconButton, MInputWithIcon, Splitpanes, Pane, MTable, MFormDetail, MListAssetNoActive, MPopup, MLoadingTiny, MTooltip, ReportPopup
+        MButton, MIconButton, MInputWithIcon, Splitpanes, Pane, MTable, AssetAdjustmentDetail, MListAssetNoActive, MPopup, MLoadingTiny, MTooltip, ReportPopup
     },
     async created() {
         // gọi api phân trang bảng voucher đổ chứng từ vào table
@@ -435,7 +435,7 @@ export default {
          * Created by: NDCHIEN(18/4/2023)
          */
         handleVoucherIdAfterClickRow(object) {
-            this.idVoucher = object.voucher_id;
+            this.idVoucher = object.ref_id;
             if(object.row_index <= this.pageSizeVoucher) {
                 this.activeRow = object.row_index - 1;
             }
@@ -460,7 +460,7 @@ export default {
                 this.currentPageVoucher = res.data.CurrentPage;
                 
                 if(this.dataVoucher.length > 0) {
-                    this.dataVoucherFirst = this.dataVoucher[0].voucher_id;
+                    this.dataVoucherFirst = this.dataVoucher[0].ref_id;
                 }
 
                 this.$emit('cancelLoading');
@@ -482,7 +482,7 @@ export default {
             axios
             .get(this.voucherAPI.getVoucherDetail(voucherID))
             .then(res => {
-                this.dataVoucherDetail = res.data;
+                this.dataVoucherDetail = this.configDataForDetail(res.data[0]);
                 this.isLoading = false;
             })
             .catch(res => {
@@ -490,7 +490,58 @@ export default {
             })
         },
 
-        
+        configDataForDetail(data) {
+            return [
+                {
+                    title: 'Nguyên giá',
+                    info: data.amount,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Giá trị hao mòn',
+                    info: data.depreciation_value,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Hao mòn/Khấu hao lũy kế',
+                    info: data.accumulate_depreciation,
+                    new: 0,
+                    final: 0
+                },               
+                {
+                    title: 'Giá trị khấu hao tháng/quý',
+                    info: data.monthly_depreciation_value,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Tỷ lệ hao mòn',
+                    info: data.wastage_rate,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Giá trị còn lại',
+                    info: data.remaining_value,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Số năm còn lại',
+                    info: data.remaining_use_time,
+                    new: 0,
+                    final: 0
+                },
+                {
+                    title: 'Đến năm',
+                    info: data.by_the_year,
+                    new: 0,
+                    final: 0
+                },
+            ]
+        }
     },
     watch: {
         // gọi api bảng voucher detail mỗi khi idVoucher thay đổi (sau khi click vào từng dòng trong bảng voucher)
@@ -535,7 +586,7 @@ export default {
         return {
             voucherAPI: config.assetAdjustmentAPI,
             voucherTh: resource.assetAdjustmentTh,
-            voucherDetailTh: resource.voucherDetailTh,
+            voucherDetailTh: resource.assetAdjustmentDetailTh,
             assetView: resource.assetView,
             api: resource.API,
             assetFooter: resource.assetFooter,

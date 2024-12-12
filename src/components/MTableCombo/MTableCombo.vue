@@ -518,7 +518,7 @@
     
                 </td>
                 <td v-for="(item, index) in moreInfo" :key="index" style="text-align: right; font-family: Roboto Bold">{{ this.formatMoney(item) }}</td>
-                <td v-for="n in (tableInfo.length - colspan - moreInfo.length + 1)" :key="n"></td>
+                <td v-for="n in (tableInfo.length - colspan - moreInfo?.length + 1)" :key="n"></td>
             </tr>
         </table>
     
@@ -612,7 +612,7 @@
             activeRow: Number,
         },
         async created() {
-    
+    console.log('tableTh', this.tableTh);
             // gọi api được truyền vào từ props
             if(this.allowGetAll == false && this.api != undefined) {
                 axios
