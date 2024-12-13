@@ -28,6 +28,7 @@ var config = {
     },
 
     assetAdjustmentAPI: {
+        deleteVoucher: "https://localhost:7210/api/AssetAdjustments/List",
         filterVoucher: function(keyWord, pageSize, pageNumber) {
             return `https://localhost:7210/api/AssetAdjustments/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
         },
@@ -42,6 +43,9 @@ var config = {
         },
         updateVoucher: function(voucherID) {
             return `https://localhost:7210/api/AssetAdjustments/Detail/${voucherID}`
+        },
+        insertVoucher: function() {
+            return `https://localhost:7210/api/AssetAdjustments/Detail`
         },
     },
 

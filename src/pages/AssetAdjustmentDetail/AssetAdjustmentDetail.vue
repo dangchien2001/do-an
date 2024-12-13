@@ -102,7 +102,7 @@
                         v-if="true"
                         v-model="voucher.voucher.asset_code"
                         :dataAvailable="assetForComboData"
-                        @dataEmit="(dataEmit) => {voucher.voucher.asset_name = this.assetForComboData.filter(item => item.asset_id == dataEmit)[0].asset_name}"
+                        @dataEmit="(dataEmit) => {voucher.voucher.asset_name = this.assetForComboData.filter(item => item.asset_id == dataEmit)[0].asset_name, voucher.voucher.asset_id = this.assetForComboData.filter(item => item.asset_id == dataEmit)[0].asset_id}"
                         style="z-index: 1000"
                     ></MCombobox>
                 </div>
@@ -292,6 +292,27 @@
         this.getMaxCode();
         // forcus input đầu tiên
         this.isForcusVoucherCode = true;
+
+        this.dataForTable = this.configDataForDetail([{
+          new_amount: 0,
+          amount: 0,
+          new_depreciation_value: 0,
+          depreciation_value: 0,
+          new_accumulate_depreciation: 0,
+          accumulate_depreciation: 0,
+          new_monthly_depreciation_value: 0,
+          monthly_depreciation_value: 0,
+          new_wastage_rate: 0,
+          wastage_rate: 0,
+          new_remaining_value: 0,
+          remaining_value: 0,
+          new_remaining_use_time: 0,
+          remaining_use_time: 0,
+          new_by_the_year: 0,
+          by_the_year: 0,
+          new_quantity: 0,
+          quantity: 0
+        }]);
       }
       // gọi api lấy chứng từ nếu là form sửa
       if (this.typeOfForm == this.voucherForm.typeOfForm.editForm) {
@@ -522,7 +543,17 @@
       editVoucher() {
         var validateResult = this.validate();
         var result = {
-          voucher: this.voucher.voucher,
+          voucher: {
+            ref_id: this.voucher.voucher.voucher_id,
+            ref_no: this.voucher.voucher.voucher_code,
+            ref_date: this.voucher.voucher.voucher_date,
+            asset_id: this.voucher.voucher.asset_id,
+            asset_code: this.voucher.voucher.asset_code,
+            asset_name: this.voucher.voucher.asset_name,
+            description: this.voucher.voucher.description,
+            posted_date: this.voucher.voucher.posted_date,
+            start_year: this.voucher.voucher.start_year,
+          },
           voucherDetails: this.formatForSave(this.dataForTable, this.defaultData[0])
         }
         if (validateResult) {
@@ -536,6 +567,7 @@
       formatForSave(data, defaultData) {
         return [
           {
+            row_index: 0,
             ref_detail_id: defaultData.ref_detail_id,
             ref_id: defaultData.ref_id,
             amount: data[0].info,
@@ -625,8 +657,18 @@
       insertVoucher() {
         var validateResult = this.validate();
         var result = {
-          voucher: this.voucher.voucher,
-          voucherDetails: this.dataForTable
+          voucher: {
+            ref_id: this.voucher.voucher.voucher_id,
+            ref_no: this.voucher.voucher.voucher_code,
+            ref_date: this.voucher.voucher.voucher_date,
+            asset_id: this.voucher.voucher.asset_id,
+            asset_code: this.voucher.voucher.asset_code,
+            asset_name: this.voucher.voucher.asset_name,
+            description: this.voucher.voucher.description,
+            posted_date: this.voucher.voucher.increment_date,
+            start_year: this.voucher.voucher.start_year,
+          },
+          voucherDetails: this.formatForSave(this.dataForTable, this.defaultData[0])
         }
         if (validateResult) {
           axios
@@ -951,7 +993,8 @@
   
         assetForComboData: [],
 
-        defaultData: []
+        defaultData: [{
+        }]
       };
     },
   };
