@@ -7,6 +7,7 @@ import AccountList from './pages/accountList/AccountList.vue'
 import TheContent from './layouts/TheContent/TheContent.vue'
 import clickOutSide from '@/directive/clickOutSide'
 import assetTransfer from './pages/assetTransfer/assetTransfer.vue'
+import assetDepreciation from './pages/assetDepreciation/assetDepreciation.vue'
 // import TableTree from './views/TableTree/TableTree.vue'
 import AccountManage from './views/TableTree/AccountManage.vue'
 import {save, insert, esc, up, down, move} from '@/directive/multipleKeydown'
@@ -19,6 +20,7 @@ const routers = [
     {path: "/IncrementAsset", component: AssetView},
     {path: "/AssetAdjustment", component: AssetAdjustment},
     {path: "/AssetTransfer", component: assetTransfer},
+    {path: "/assetDepreciation", component: assetDepreciation},
     {path: "/CheckAgain", component: AccountManage}
 ]
 

@@ -71,6 +71,28 @@ var config = {
         },
     },
 
+    assetDepreciationAPI: {
+        deleteVoucher: "https://localhost:7210/api/AssetDepreciations/List",
+        filterVoucher: function(keyWord, pageSize, pageNumber) {
+            return `https://localhost:7210/api/AssetDepreciations/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
+        },
+        getVoucherDetail: function(voucherID) {
+            return `https://localhost:7210/api/AssetDepreciationDetails/filter?voucherId=${voucherID}`
+        },
+        getVoucherByCode: function(voucherCode) {
+            return `https://localhost:7210/api/AssetDepreciations/Code?voucherCode=${voucherCode}`
+        },
+        getMaxCode: function() {
+            return `https://localhost:7210/api/AssetDepreciations/maxCode`
+        },
+        updateVoucher: function(voucherID) {
+            return `https://localhost:7210/api/AssetDepreciations/Detail/${voucherID}`
+        },
+        insertVoucher: function() {
+            return `https://localhost:7210/api/AssetDepreciations/Detail`
+        },
+    },
+
     accountAPI: {
         getAccountList: function() {
             return `https://localhost:7210/api/AccountSystems`

@@ -31,7 +31,7 @@ var resource = {
                         },
                         {
                             text: "Tính hao mòn",
-                            link: "/Reuduce",
+                            link: "/assetDepreciation",
                         },
                         {
                             text: "Điều chuyển tài sản",
@@ -319,6 +319,35 @@ var resource = {
         },
     ],
 
+    assetDepreciationTH: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1; left: -50%",
+        },
+        {
+            colName: "Số chứng từ",
+            style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "Ngày chứng từ",
+            style: "text-align: center; width: 200px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 370px;"
+        },       
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 270px"
+        },
+        {
+            colName: "",
+            style: "text-align: center;  width: 98px",
+        },
+    ],
+
     assetTransfer: [
         {
             name: "row_index",
@@ -421,6 +450,128 @@ var resource = {
         {
             colName: "Nguyên giá",
             style: "text-align: right; width: 250px"
+        },
+        {
+            colName: "",
+            style: "text-align: center; width: 98px",
+        },
+    ],
+
+    assetDepreciationDetail: [
+        {
+            name: "row_index",
+            style: "text-align: center;"
+        },
+        {
+            name: "asset_code",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "asset_code",
+            entityEmit: "asset_id",
+            key: "Asset",
+            length: 20
+        },
+        {
+            name: "asset_name",
+            style: "text-align: left;",
+            length: 225
+        },
+        {
+            name: "account_system_debit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemDebit",
+            length: 225
+        },
+        {
+            name: "account_system_credit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemCredit",
+            length: 225
+        },
+        {
+            name: "description",
+            style: "text-align: left;",
+            length: 225
+        },                      
+        {
+            name: "amount",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "wastage_rate",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "year_depreciation_value",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "depreciation_value",
+            style: "text-align: right;",
+            type: "number"
+        },
+        {
+            name: "price",
+            style: "text-align: right;",
+            type: "number"
+        }
+    ],
+
+    assetDepreciationDetailTH: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1;",
+        },
+        {
+            colName: "Mã tài sản",
+            style: "text-align: left; width: 150px"
+        },
+        {
+            colName: "Tên tài sản",
+            style: "text-align: left; width: 150px"
+        },
+        {
+            colName: "TK nợ",
+            style: "text-align: left; width: 100px"
+        },
+        {
+            colName: "TK có",
+            style: "text-align: left; width: 100px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 150px"
+        },
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 150px"
+        },
+        {
+            colName: "Tỉ lệ hao mòn",
+            style: "text-align: right; width: 150px"
+        },
+        {
+            colName: "Số HM-KH/năm",
+            style: "text-align: right; width: 150px"
+        },
+        {
+            colName: "Số hao mòn",
+            style: "text-align: right; width: 150px"
+        },
+        {
+            colName: "Số tiền",
+            style: "text-align: right; width: 150px"
         },
         {
             colName: "",
