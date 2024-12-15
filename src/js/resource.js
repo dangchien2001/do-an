@@ -39,7 +39,7 @@ var resource = {
                         },
                         {
                             text: "Ghi giảm",
-                            link: "/ReduceWrite",
+                            link: "/assetDecrement",
                         },
                         {
                             text: "Kiểm kê",
@@ -290,6 +290,43 @@ var resource = {
         },
     ],
 
+    assetDecrementDetailTh: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1;",
+        },
+        {
+            colName: "Mã tài sản",
+            style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "Tên tài sản",
+            style: "text-align: left; width: 300px"
+        },
+        {
+            colName: "Bộ phận sử dụng",
+            style: "text-align: left; width: 170px"
+        },
+        {
+            colName: "TK nợ",
+            style: "text-align: left; min-width: 100px"
+        },
+        {
+            colName: "TK có",
+            style: "text-align: left; min-width: 100px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 170px"
+        },
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 170px"
+        }
+    ],
+
     assetTransferTH: [
         {
             colName: "STT",
@@ -320,6 +357,35 @@ var resource = {
     ],
 
     assetDepreciationTH: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1; left: -50%",
+        },
+        {
+            colName: "Số chứng từ",
+            style: "text-align: left; width: 200px"
+        },
+        {
+            colName: "Ngày chứng từ",
+            style: "text-align: center; width: 200px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 370px;"
+        },       
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 270px"
+        },
+        {
+            colName: "",
+            style: "text-align: center;  width: 98px",
+        },
+    ],
+
+    assetDecrementTH: [
         {
             colName: "STT",
             style: "text-align: center; width: 49px",
@@ -417,6 +483,47 @@ var resource = {
         {
             colName: "Giá trị còn lại",
             style: "text-align: right; width: 150px;"
+        },
+        {
+            colName: "",
+            style: "text-align: center; width: 98px",
+        },
+    ],
+
+    assetDecrementDetailThForm: [
+        {
+            colName: "STT",
+            style: "text-align: center; width: 49px",
+            tooltipText: "Số thứ tự",
+            tooltipStyle: "width: 100px; z-index: 1;",
+        },
+        {
+            colName: "Mã tài sản",
+            style: "text-align: left; width: 150px"
+        },
+        {
+            colName: "Tên tài sản",
+            style: "text-align: left; width: 150px"
+        },
+        {
+            colName: "Bộ phận sử dụng",
+            style: "text-align: left; width: 250px"
+        },
+        {
+            colName: "TK nợ",
+            style: "text-align: left; width: 100px"
+        },
+        {
+            colName: "TK có",
+            style: "text-align: left; width: 100px"
+        },
+        {
+            colName: "Diễn giải",
+            style: "text-align: left; min-width: 250px"
+        },
+        {
+            colName: "Nguyên giá",
+            style: "text-align: right; width: 150px"
         },
         {
             colName: "",
@@ -698,6 +805,62 @@ var resource = {
             name: "residual_value",
             style: "text-align: right; padding-right: 16px" 
         },
+    ],
+
+    assetDecrementDetail: [
+        {
+            name: "row_index",
+            style: "text-align: center;"
+        },
+        {
+            name: "asset_code",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "asset_code",
+            entityEmit: "asset_id",
+            key: "Asset",
+            length: 20
+        },
+        {
+            name: "asset_name",
+            style: "text-align: left;"
+        },
+        {
+            name: "department_name",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "department_name",
+            entityEmit: "department_id",
+            key: "Department",
+            length: 225
+        },
+        {
+            name: "account_system_debit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemDebit",
+            length: 225
+        },
+        {
+            name: "account_system_credit",
+            style: "text-align: left;",
+            type: "combo",
+            entity: "account_number",
+            entityEmit: "account_number",
+            key: "AccountSystemCredit",
+            length: 225
+        },
+        {
+            name: "description",
+            style: "text-align: left;"
+        },
+        {
+            name: "amount",
+            style: "text-align: right;",
+            type: "number"
+        }
     ],
 
     voucherDetailForm: [

@@ -8,6 +8,7 @@ import TheContent from './layouts/TheContent/TheContent.vue'
 import clickOutSide from '@/directive/clickOutSide'
 import assetTransfer from './pages/assetTransfer/assetTransfer.vue'
 import assetDepreciation from './pages/assetDepreciation/assetDepreciation.vue'
+import assetDecrement from './pages/assetDecrement/assetDecrement.vue'
 // import TableTree from './views/TableTree/TableTree.vue'
 import AccountManage from './views/TableTree/AccountManage.vue'
 import {save, insert, esc, up, down, move} from '@/directive/multipleKeydown'
@@ -21,6 +22,7 @@ const routers = [
     {path: "/AssetAdjustment", component: AssetAdjustment},
     {path: "/AssetTransfer", component: assetTransfer},
     {path: "/assetDepreciation", component: assetDepreciation},
+    {path: "/assetDecrement", component: assetDecrement},
     {path: "/CheckAgain", component: AccountManage}
 ]
 

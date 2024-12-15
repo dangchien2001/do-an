@@ -49,6 +49,28 @@ var config = {
         },
     },
 
+    assetDecrementAPI: {
+        filterVoucher: function(keyWord, pageSize, pageNumber) {
+            return `https://localhost:7210/api/AssetDecrements/filter?voucherFilter=${keyWord}&pageSize=${pageSize}&pageNumber=${pageNumber}`
+        },
+        getVoucherDetail: function(voucherID) {
+            return `https://localhost:7210/api/AssetDecrementDetails/filter?voucherId=${voucherID}`
+        },
+        getMaxCode: function() {
+            return `https://localhost:7210/api/AssetDecrements/maxCode`
+        },
+        getVoucherByCode: function(voucherCode) {
+            return `https://localhost:7210/api/AssetDecrements/Code?voucherCode=${voucherCode}`
+        },
+        updateVoucher: function(voucherID) {
+            return `https://localhost:7210/api/AssetDecrements/Detail/${voucherID}`
+        },
+        insertVoucher: function() {
+            return `https://localhost:7210/api/AssetDecrements/Detail`
+        },
+        deleteVoucher: "https://localhost:7210/api/AssetDecrements/List",
+    },
+
     AssetTransferAPI: {
         deleteVoucher: "https://localhost:7210/api/AssetTransfers/List",
         filterVoucher: function(keyWord, pageSize, pageNumber) {
