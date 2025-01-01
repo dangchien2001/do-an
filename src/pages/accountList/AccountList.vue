@@ -98,20 +98,22 @@
                 :allowPaging="false"
                 :arrayTotal="[]"
                 :allowCheckBox = "false"
+                @edit="(data) => editAccount(data)"
+                @delete="(data) => $emit('delete', data)"
             ></MTableTree>
         </div>
         
         <!-- form thêm tài sản -->
-        <MProductDetail
+        <accountDetail
             v-if="isHide"
             @closeForm = handleForm
             @returnActiveIndex = "returnActiveIndex"
             :title="form.add"
             :data="this.dataFromTable"
-            :dataForEdit="null"
+            :dataForEdit="this.dataForEdit"
             typeForm="add"
             @addSuccess="handleAfterAddSuccess"
-        ></MProductDetail>
+        ></accountDetail>
 
         <!-- toast message -->
         <MToast
@@ -171,7 +173,7 @@ import MComboboxWithIcon from '@/components/MInput/MComboboxWithIcon.vue';
 import MButton from '@/components/MButton/MButton.vue';
 import MIconButton from '@/components/MButton/MIconButton.vue';
 import MTableTree from '@/components/MTableTree/MTableTree.vue';
-import MProductDetail from '@/pages/productDetail/MProductDetail.vue';
+import accountDetail from '@/pages/accountDetail/accountDetail.vue';
 import MToast from '@/components/MToast/MToast.vue';
 import MPopup from '@/components/MPopup/MPopup.vue';
 import resource from '@/js/resource';
@@ -182,21 +184,28 @@ import comon from "@/js/comon";
 export default {
     name: "AccountList",
     components: {
-        MInputWithIcon, MComboboxWithIcon, MButton, MIconButton,MTableTree ,MProductDetail, MToast, MPopup
+        MInputWithIcon, MComboboxWithIcon, MButton, MIconButton,MTableTree ,accountDetail, MToast, MPopup
     },
     async created() {
         this.$emit('startLoading');
-        await axios
+        await this.loadData();
+    },
+    methods: {
+        async loadData() {
+            await axios
             .get(this.accountAPI.getAccountList())
             .then(res => {
                 console.log(res);
                 this.dataForTable = comon.buildTree(res.data, 'account_number', 'account_number_parent');
-                console.log(this.dataForTable);
                 this.$emit('cancelLoading');
             })
             .catch(res => console.log(res))
-    },
-    methods: {
+        },
+
+        editAccount(data){
+            this.handleForm();
+            this.dataForEdit = data.account_number;
+        },
         /**
          * Hàm thực hiện kiểm tra phát sinh chứng từ phía front end sau khi bấm nút xóa trước khi bật popup xóa
          * Created by: NDCHIEN(9/5/2023)
@@ -242,12 +251,13 @@ export default {
          * Hàm dùng để xử lý sau khi thêm mới tài sản thành công
          * Created by: NDCHIEN(9/3/2023)
          */
-        handleAfterAddSuccess() {
+        async handleAfterAddSuccess() {
             this.isHide = false;
             this.isShowToats = true;
             this.toastMessage = 'Lưu dữ liệu thành công';
             this.tableChange = !this.tableChange;
             this.activeChange = !this.activeChange;
+            await this.loadData();
         },
 
 
@@ -293,6 +303,7 @@ export default {
          */
         handleForm() {
             this.isHide = !this.isHide;    
+            this.dataForEdit = null;
         },
 
         /**
@@ -437,7 +448,8 @@ export default {
             listActive: 0,
             // biến lưu mã chứng từ nếu chỉ xóa 1 tài sản có phát sinh chứng từ
             voucherCodeForDeleteOnceError: "",
-            assetCodeForDeleteOnceError: ""
+            assetCodeForDeleteOnceError: "",
+            dataForEdit: null
         }
     }
 }

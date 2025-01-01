@@ -15,7 +15,7 @@
                     class="logo-text" 
                     v-if="sidebarStatus.hide"
                 >
-                    MISA QLTS
+                    NDCHIEN KT
                 </div>
             </div>
         </router-link>

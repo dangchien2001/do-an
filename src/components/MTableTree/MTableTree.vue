@@ -45,8 +45,11 @@
         :key="index"
         :properties="properties"
         :dataAvailable="dataAvailable"
-        :allowFunctionCol="true"
+        :allowFunctionCol="false"
+        :allowEditAndDeleteCol="true"
         :isShowChildren="true"
+        @edit="(data) => $emit('edit', data)"
+        @delete="(data) => $emit('delete', data)"
       ></MRow>
 
       <!-- Phân trang -->

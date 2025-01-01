@@ -3,14 +3,6 @@ var resource = {
     // Mảng chứa class icon của sidebar
     sidebarItemIcons: [
                 {
-                    // icon tổng quan
-                    name: "overview",
-                    class: "overview-icon",
-                    active: "",
-                    text: "Tổng quan",
-                    link: "",
-                },
-                {
                     // icon tài sản
                     name: "asset",
                     class: "asset-icon",
@@ -34,38 +26,10 @@ var resource = {
                             link: "/assetDepreciation",
                         },
                         {
-                            text: "Điều chuyển tài sản",
-                            link: "/TranformAsset",
-                        },
-                        {
                             text: "Ghi giảm",
                             link: "/assetDecrement",
-                        },
-                        {
-                            text: "Kiểm kê",
-                            link: "/Check",
-                        },
-                        {
-                            text: "Khác",
-                            link: "/Other",
-                        },                       
+                        },                    
                     ],
-                    link: "",
-                },
-                {
-                    // icon tài sản đảm bảo
-                    name: "collateral",
-                    class: "collateral-icon",
-                    active: "",
-                    text: "Tài khoản",
-                    link: "AccountList",
-                },
-                {
-                    // icon công cụ, dụng cụ
-                    name: "tool",
-                    class: "tool-icon",
-                    active: "",
-                    text: "Công cụ dụng cụ",
                     link: "",
                 },
                 {
@@ -85,23 +49,7 @@ var resource = {
                             link: "/AccountList",
                         },
                     ]
-                },
-                {
-                    // icon tra cứu
-                    name: "search",
-                    class: "search-icon",
-                    active: "",
-                    text: "Tra cứu",
-                    link: "",
-                },
-                {
-                    // icon báo cáo
-                    name: "report",
-                    class: "report-icon",
-                    active: "",
-                    text: "Báo cáo",
-                    link: "",
-                },
+                }
     ],
     
     // Mảng chứa thông tin về các trường (style, colName) trong table

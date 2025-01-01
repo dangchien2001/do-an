@@ -25,8 +25,8 @@
     </td>
 
     <!-- function col -->
-    <td class="function-col" v-if="allowFunctionCol">
-      <div class="edit-icon" @click="editProduct(item.asset_id)">
+    <td class="function-col" v-if="false">
+      <div class="edit-icon" @click="this.$emit('edit', item[0])">
         <MTooltip class="edit-tooltip" text="Sửa tài sản"></MTooltip>
       </div>
       <div class="clone-icon" @click="cloneProduct(item.asset_id)">
@@ -35,27 +35,27 @@
     </td>
 
     <!-- function col (edit, delete) -->
-    <td class="function-col" v-if="allowEditAndDeleteCol">
+    <td class="function-col" v-if="true">
       <div
         class="edit-icon"
-        @click="editProduct('', dataAvailable[index][properties[1].name])"
+        @click="this.$emit('edit', item)"
       >
         <MTooltip
           class="edit-tooltip"
-          :text="table.iconTooltip.edit"
+          :text="'Sửa'"
         ></MTooltip>
       </div>
       <div
         class="delete-icon"
         @click="
           () => {
-            this.$emit('delete', dataAvailable[index][properties[1].name]);
+            this.$emit('delete', item);
           }
         "
       >
         <MTooltip
           class="delete-tooltip"
-          :text="table.iconTooltip.delete"
+          :text="'Xóa'"
         ></MTooltip>
       </div>
     </td>
@@ -70,6 +70,8 @@
     :allowFunctionCol="true"
     :level="item.level"
     :isShowChildren="isShowChildrenInChildren"
+    @edit="(data) => $emit('edit', data)"
+        @delete="(data) => $emit('delete', data)"
   ></MRow>
 </template>
 
